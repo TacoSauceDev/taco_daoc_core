@@ -32,7 +32,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
         
       - name: Terraform Init
-        working-directory: 
         id: init
         run: terraform init
         

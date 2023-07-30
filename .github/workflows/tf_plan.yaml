@@ -33,5 +33,4 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          echo "## Terraform Plan" >> $GITHUB_STEP_SUMMARY
-          terraform plan -no-color >> $GITHUB_STEP_SUMMAR
+          terraform plan -no-color

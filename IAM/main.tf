@@ -12,8 +12,7 @@ resource "aws_iam_openid_connect_provider" "github_actions" {
 resource "aws_iam_role" "gha_oidc_assume_role" {
   name = "gha_oidc_assume_role"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [

@@ -25,7 +25,7 @@ resource "aws_iam_role" "gha_oidc_assume_role" {
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringEquals" : {
-            "token.actions.githubusercontent.com:sub" : ["repo:TacoSauceDev/taco_daoc_core"]
+            "token.actions.githubusercontent.com:sub" : ["repo:TacoSauceDev/taco_daoc_core:ref:refs/heads/main"]
           },
           "StringEquals" : {
             "token.actions.githubusercontent.com:aud" : "sts.amazonaws.com"

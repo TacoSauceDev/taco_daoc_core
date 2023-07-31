@@ -1,8 +1,9 @@
-name: Terraform Plan
+name: Terraform Apply
 on:
   push:
     paths:
-      - IAM/**
+      - DB/**
+  workflow_dispatch:
 env:
   AWS_REGION : "us-west-2"
 permissions:
@@ -10,9 +11,9 @@ permissions:
       contents: read    # This is required for actions/checkout
 defaults:
   run:
-    working-directory: IAM
+    working-directory: DB
 jobs:
-  TerraformPlan:
+  TerraformApply:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
@@ -27,14 +28,14 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.OIDC_ROLE_TO_ASSUME }}
-          role-session-name: tf_plan_ghaction
+          role-session-name: tf_apply_db_ghaction
           aws-region: ${{ env.AWS_REGION }}
         
       - name: Terraform Init
         id: init
         run: terraform init
         
-      - name: Terraform Plan
-        id: plan
+      - name: Terraform Apply
+        id: apply
         run: |
-          terraform plan -no-color
+          terraform apply -input=false -auto-approve

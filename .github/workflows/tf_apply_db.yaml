@@ -39,4 +39,5 @@ jobs:
       - name: Terraform Apply
         id: apply
         run: |
+          echo $TF_VAR_INBOUND_CIDR
           terraform apply -input=false -auto-approve
